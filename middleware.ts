@@ -1,34 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ["mongoose"],
-  },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "img.clerk.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.clerk.dev",
-      },
-      {
-        protocol: "https",
-        hostname: "uploadthing.com",
-      },
-      {
-        protocol: "https",
-        hostname: "placehold.co",
-      },
-    ],
-  },
-};
+// Resource: https://clerk.com/docs/nextjs/middleware#auth-middleware
+// Copy the middleware code as it is from the above resource
 
-module.exports = nextConfig;
+import { authMiddleware } from "@clerk/nextjs";
+
+export default authMiddleware({
+  // An array of public routes that don't require authentication.
+  publicRoutes: ["/api/webhook/clerk"],
+
+  // An array of routes to be ignored by the authentication middleware.
+  ignoredRoutes: ["/api/webhook/clerk"],
+});
+
+export const config = {
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+};
