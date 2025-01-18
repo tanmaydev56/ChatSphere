@@ -39,6 +39,7 @@ const ThreadCard = ({
   comments,
   isComment,
 }: Props) => {
+  console.log("community:",community);
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
@@ -148,6 +149,7 @@ const ThreadCard = ({
           </Link>
         </div>
       )}
+
 
       {!isComment && community && (
         <Link href={`/communities/${community.id}`} className="mt-5 flex items-center">

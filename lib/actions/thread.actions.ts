@@ -70,6 +70,7 @@ export async function createThread({ text, author, communityId, path }: Params
       author,
       community: communityIdObject, // Assign communityId if provided, or leave it null for personal account
     });
+    console.log("Communitydadw:",communityId);
 
     // Update User model
     await User.findByIdAndUpdate(author, {
