@@ -8,16 +8,15 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params:Promise< {id: string;}>;
 }
 
 async function Page({ params }: PageProps) {
   const user = await currentUser();
+  const param = await params;
   if (!user) return null;
 
-  const userInfo = await fetchUser(params.id);
+  const userInfo = await fetchUser(param.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
