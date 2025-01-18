@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { WithClerkMiddleware } from "@clerk/nextjs/server";
 const nextConfig = {
   experimental: {
     // Enable server actions for enhanced data fetching capabilities
@@ -45,7 +45,7 @@ const nextConfig = {
 
 // Import and configure Clerk middleware
 
-export default clerkMiddleware();
+export default WithClerkMiddleware( nextConfig);
 
 
 
