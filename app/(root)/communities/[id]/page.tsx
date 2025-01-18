@@ -9,12 +9,13 @@ import Image from "next/image";
 
 // @ts-ignore
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-async function Page({ params }: PageProps) {
+async function Page(props: PageProps) {
+  const params = await props.params;
   const user = await currentUser();
   if (!user) return null;
 
