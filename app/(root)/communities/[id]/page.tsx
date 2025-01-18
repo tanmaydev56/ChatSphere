@@ -7,16 +7,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
 
+// Correct the PageProps type
 interface PageProps {
-  params:Promise< {id: string;}>;
+  params: {
+    id: string;
+  };
 }
 
 async function Page({ params }: PageProps) {
   const user = await currentUser();
-  const param = await params;
   if (!user) return null;
 
-  const userInfo = await fetchUser(param.id);
+  const userInfo = await fetchUser(params.id); // Directly use params.id
   if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
