@@ -1,8 +1,11 @@
 "use client";
 import ChatForm from '@/components/forms/ChatForm';
 import ChatMessage from '@/components/forms/ChatMessage';
-import {socket} from '../../../lib/socketClient';
+// import {socket} from '../../../lib/socketClient';
+import {io} from "socket.io-client"
 import React, { useEffect, useState } from 'react';
+
+const socket = io('/api/socket');
 const Page = () => {
   const [room, setRoom] = useState<string>(''); // Initialize the room state
   const [joined, setJoined] = useState<boolean>(false); // Fixed typo in 'cosnt'
