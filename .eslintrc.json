@@ -1,0 +1,7 @@
+{
+    "extendes":[ "@next/core-web-vitals","next/typscript"],
+   " rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        
+}
+}

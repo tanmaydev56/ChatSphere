@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:socket": "set NODE_OPTIONS=--loader ts-node/esm --trace-warnings --no-warnings && ts-node server.mts",
     "build": "next build",
+    "build:socket": "next build && tsc --project tsconfig.server.json",
     "start": "next start",
+    "start:socket": "NODE_ENV=production node dist/server.mjs",
     "lint": "next lint"
   },
   "dependencies": {
@@ -30,9 +33,12 @@
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.54.2",
     "shadcn-ui": "^0.9.4",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "svix": "^1.45.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "uploadthing": "^7.4.4",
     "zod": "^3.24.1"
   },
