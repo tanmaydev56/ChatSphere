@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-
 const ChatForm = ({
   onSendMessage
 }: {
@@ -9,7 +8,6 @@ const ChatForm = ({
 }
 ) => {
   const [message, setMessage] = React.useState<string>("");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitted the form...");
@@ -18,7 +16,6 @@ const ChatForm = ({
       setMessage("");
     }
   };
-
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 w-full">
       <input
@@ -45,5 +42,4 @@ const ChatForm = ({
     </form>
   );
 };
-
 export default ChatForm;

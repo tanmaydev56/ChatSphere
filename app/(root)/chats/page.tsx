@@ -1,36 +1,26 @@
 "use client";
-
 import ChatForm from '@/components/forms/ChatForm';
 import ChatMessage from '@/components/forms/ChatMessage';
 import {socket} from '../../../lib/socketClient';
 import React, { useEffect, useState } from 'react';
-
 const Page = () => {
   const [room, setRoom] = useState<string>(''); // Initialize the room state
   const [joined, setJoined] = useState<boolean>(false); // Fixed typo in 'cosnt'
   const [userName, setUsername] = useState<string>(''); // Initialize username state
   const [messages, setMessages] = useState<{ sender: string; message: string }[]>([]); // Initialize messages state
-
 // useEffect hook to join the room
  useEffect(() => {
-
     socket.on("message", (data) => {
     setMessages((prevMessages) => [...prevMessages,data ]);
     });
     socket.on("user_joined", (message) => {
     setMessages((prevMessages) => [...prevMessages, { sender: "system", message }]);
     });
-
     return () => {
       socket.off("user_joined");
       socket.off("message")
-
     }
   }, []);
-
-
-
-
   // Handle sending a message
   const handleSendMessage = (message: string) => {
     const data ={room,message,sender:userName}
@@ -39,14 +29,12 @@ const Page = () => {
     
    
   };
-
   const handleJoinRoom = () => {
     if ( room && userName) {
     socket.emit("join-room", { room, username:userName });
     setJoined(true);
     }
   };
-
   return (
     <div className="w-full h-screen flex justify-center">
       {
@@ -85,7 +73,6 @@ const Page = () => {
                 w-full
                 p-2
                 
-
                 "
                 onChange={(e) => setRoom(e.target.value)}
               />
@@ -126,12 +113,10 @@ const Page = () => {
           {/* Chat Form */}
           <ChatForm onSendMessage={handleSendMessage} />
         </div>
-
         )
       }
      
     </div>
   );
 };
-
 export default Page;

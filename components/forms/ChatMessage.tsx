@@ -1,14 +1,11 @@
 import React from 'react';
-
 interface ChatProps {
   sender: string;
   isMyOwnMessage: boolean;
   message: string;
 }
-
 const ChatMessage = ({ sender, message, isMyOwnMessage }: ChatProps) => {
   const isSystemMessage = sender === 'system';
-
   return (
     <div
       className={`flex ${
@@ -38,5 +35,4 @@ const ChatMessage = ({ sender, message, isMyOwnMessage }: ChatProps) => {
     </div>
   );
 };
-
 export default ChatMessage;
